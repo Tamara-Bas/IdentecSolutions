@@ -1,0 +1,6 @@
+@IdentecSolutions_HostAddress = http://localhost:5276
+
+GET {{IdentecSolutions_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
