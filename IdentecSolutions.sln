@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156 d17.13
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentecSolutions", "IdentecSolutions\IdentecSolutions.WebApi.csproj", "{D2DA8C2A-4FBB-47E1-9396-051E7368E26D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentecSolutions.WebApi", "IdentecSolutions\IdentecSolutions.WebApi.csproj", "{D2DA8C2A-4FBB-47E1-9396-051E7368E26D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentecSolutions.Domain", "IdentecSolutions.Domain\IdentecSolutions.Domain.csproj", "{E754215E-1EA0-415A-80C7-9C94BB08DD4A}"
 EndProject
