@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace IdentecSolutions.Controllers;
+namespace IdentecSolutions.WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
