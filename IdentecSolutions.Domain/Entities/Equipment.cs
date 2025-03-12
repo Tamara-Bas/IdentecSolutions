@@ -1,9 +1,12 @@
 ﻿using IdentecSolutions.Domain.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace IdentecSolutions.Domain.Entities
 {
-    public class Equipment : IEntity
+    public class Equipment : Entity
     {
+        [Required]
+        [MaxLength(100)]
         public string Name { get; set; } 
         public string Description { get; set; }  
         public string SerialNumber { get; set; }  
