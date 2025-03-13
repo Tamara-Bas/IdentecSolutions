@@ -17,7 +17,5 @@ namespace IdentecSolutions.Domain.Entities
         public string Location { get; set; }
         public bool Status { get; set; } //to do and think: should be enum???
         public EquipmentTypeEnum EquipmentType { get; set; }
-
-        public int Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }
