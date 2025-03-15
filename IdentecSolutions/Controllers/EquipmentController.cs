@@ -1,3 +1,5 @@
+using IdentecSolutions.Application.Core.Queries;
+using IdentecSolutions.Application.Queries.GetAllEquipment;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IdentecSolutions.WebApi.Controllers;
@@ -9,5 +11,16 @@ namespace IdentecSolutions.WebApi.Controllers;
 //TBD
 public class EquipmentController : ControllerBase
 {
-  
+    private readonly IQueryDispatcher _queryDispatcher;
+
+    public EquipmentController(IQueryDispatcher queryDispatcher)
+    {
+        _queryDispatcher = queryDispatcher;
+    }
+    [HttpGet(Name = "GetWeatherForecast")]
+    public async Task<IActionResult> GetAllEquipmentById([FromQuery] GettAllEquipmentByIdRequest query, CancellationToken cancellationToken)
+    {
+        var response = await _queryDispatcher.QueryAsync(query, CancellationToken.None).ConfigureAwait(false);
+        return Ok(response);
+    }
 }
