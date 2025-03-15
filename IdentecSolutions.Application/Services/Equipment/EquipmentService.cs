@@ -10,10 +10,33 @@ namespace IdentecSolutions.Application.Services.Equipment
         {
             _equipmentRepository = equipmentRepository;
         }
-        public Task<EquipmentDto> GetAllEquipmentById(int equipmentId, CancellationToken cancellation)
+        public Task<List<Equipment>> GetAllEquipmentByStatus(bool status, CancellationToken cancellation)
         {
-            var equipment = _equipmentRepository.FirstOrDefault(x => x.Id == equipmentId);
-            return null;
+            try
+            {
+                var equipmentList = _equipmentRepository.Where(x => x.Status == status).ToList();
+                return equipmentList;
+            }
+            
+                 catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<Domain.Entities.Equipment> GetEquipmentById(int equipmentId, CancellationToken cancellation)
+        {
+            try
+            {
+                return await  _equipmentRepository.FirstOrDefaultAsync(x => x.Id == equipmentId);
+            }
+
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

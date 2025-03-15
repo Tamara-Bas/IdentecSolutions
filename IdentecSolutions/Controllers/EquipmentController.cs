@@ -1,6 +1,8 @@
 using IdentecSolutions.Application.Core.Queries;
 using IdentecSolutions.Application.Queries.GetAllEquipment;
+using IdentecSolutions.WebApi.Constants;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace IdentecSolutions.WebApi.Controllers;
 
@@ -17,8 +19,19 @@ public class EquipmentController : ControllerBase
     {
         _queryDispatcher = queryDispatcher;
     }
-    [HttpGet(Name = "GetWeatherForecast")]
-    public async Task<IActionResult> GetAllEquipmentById([FromQuery] GettAllEquipmentByIdRequest query, CancellationToken cancellationToken)
+
+    [HttpGet(Name = "GetAllEquipmentByStatus")]
+    public async Task<IActionResult> GetAllEquipmentByStatus([FromQuery] GettAllEquipmentByStatusRequest query, CancellationToken cancellationToken)
+    {
+        var response = await _queryDispatcher.QueryAsync(query, CancellationToken.None).ConfigureAwait(false);
+        return Ok(response);
+    }
+
+    [HttpGet(Name = "GetEquipmentById")]
+    [Route("get-equipment-by-id")]
+    [ProducesResponseType(typeof(GetAllEquipmentByStatusResponse),StatusCodes.Status200OK)]
+    [SwaggerOperation(Summary =OpenApiEndpointDocumentation.GetAllEquipmentByStatusSummary,Description =OpenApiEndpointDocumentation.GetAllEquipmentByStatusDescription)]
+    public async Task<IActionResult> GetEquipmentById([FromQuery] GettAllEquipmentByStatusRequest query, CancellationToken cancellationToken)
     {
         var response = await _queryDispatcher.QueryAsync(query, CancellationToken.None).ConfigureAwait(false);
         return Ok(response);

@@ -1,6 +1,7 @@
 ﻿using IdentecSolutions.Domain.Entities;
 using IdentecSolutions.EF.Seed;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace IdentecSolutions.EF
@@ -16,6 +17,7 @@ namespace IdentecSolutions.EF
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            Debugger.Launch();
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             DataSeed(modelBuilder);
 
