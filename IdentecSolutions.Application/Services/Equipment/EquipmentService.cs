@@ -10,7 +10,7 @@ namespace IdentecSolutions.Application.Services.Equipment
         {
             _equipmentRepository = equipmentRepository;
         }
-        public Task<List<Equipment>> GetAllEquipmentByStatus(bool status, CancellationToken cancellation)
+        public async Task<List<Domain.Entities.Equipment>> GetAllEquipmentByStatus(bool status, CancellationToken cancellation)
         {
             try
             {
