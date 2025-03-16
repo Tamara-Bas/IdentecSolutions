@@ -8,7 +8,7 @@ namespace IdentecSolutions.Application.Contracts
 
         public bool HasData()
         {
-            if(Data is IList list)
+            if (Data is IList list)
             {
                 return list.Count > 0;
             }
@@ -21,4 +21,11 @@ namespace IdentecSolutions.Application.Contracts
             return Data != null;
         }
     }
-}
+        public class PaginatedResponse<T>:Response<T>
+        {
+            public int? Total { get; set; }
+
+            public int PageSize { get; set; }
+        }
+    }
+

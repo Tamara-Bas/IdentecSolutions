@@ -2,16 +2,11 @@
 using IdentecSolutions.Application.Models.Equipment;
 using IdentecSolutions.Domain.Entities;
 
-namespace IdentecSolutions.Application.Queries.GetEquipmentById
+namespace IdentecSolutions.Application.Queries.GetAllEquipmentByStatus
 {
-    public class GetEquipmentByIdMapper : Profile
+    class GettAllEquipmentByStatusMapper :Profile
     {
-        //public GetEquipmentByIdMapper()
-        //{
-        //    CreateMap<EquipmentDto, Equipment>().ReverseMap();
-        //}
-
-        public GetEquipmentByIdMapper()
+        public GettAllEquipmentByStatusMapper()
         {
             CreateMap<Equipment, EquipmentDto>()
                 .ForMember(d => d.Id, x => x.MapFrom(s => s.Id))

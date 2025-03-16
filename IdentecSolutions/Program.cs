@@ -1,7 +1,11 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using IdentecSolutions.Application.Core.Queries;
 using IdentecSolutions.Application.Core.Queries.Dispatcher;
 using IdentecSolutions.Application.Queries.GetAllEquipment;
+using IdentecSolutions.Application.Queries.GetEquipmentById;
 using IdentecSolutions.Application.Services.Equipment;
+using IdentecSolutions.Application.Validation;
 using IdentecSolutions.EF;
 using IdentecSolutions.EF.Repository;
 using IdentecSolutions.EF.UnitOfWork;
@@ -25,6 +29,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 //add services
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetAllEquipmentByStatusHandler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetEquipmentByIdHandler).Assembly));
+
 
 builder.Services.AddScoped<IQueryDispatcher, QueryDispatcher>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -32,6 +38,19 @@ builder.Services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>
 //builder.Services.AddMediatR(typeof(Program));
 
 builder.Services.AddScoped<IEquipmentServiceRepository, EquipmentService>();
+
+// Register AutoMapper
+builder.Services.AddAutoMapper(typeof(GetEquipmentByIdValidator));
+
+//register Validator
+builder.Services.AddValidatorsFromAssembly(typeof(GetEquipmentByIdValidator).Assembly);
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+//builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+//builder.Services.AddControllers().AddFluentValidation();
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

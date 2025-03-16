@@ -3,11 +3,12 @@ using IdentecSolutions.Application.Models.Equipment;
 
 namespace IdentecSolutions.Application.Queries.GetAllEquipment
 {
-    public class GetAllEquipmentByStatusResponse :Response<List<EquipmentDto>>
+    public class GetAllEquipmentByStatusResponse : PaginatedResponse<List<EquipmentDto>>
     {
-        public GetAllEquipmentByStatusResponse(List<EquipmentDto> data)
+        public GetAllEquipmentByStatusResponse(List<EquipmentDto> data, int totalRecord)
         {
             Data = data;
+            Total = totalRecord;
         }
     }
 }

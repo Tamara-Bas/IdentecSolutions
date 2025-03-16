@@ -1,19 +1,25 @@
-﻿using IdentecSolutions.Application.Core.Queries;
+﻿using AutoMapper;
+using IdentecSolutions.Application.Core.Queries;
+using IdentecSolutions.Application.Models.Equipment;
 using IdentecSolutions.Application.Services.Equipment;
+using IdentecSolutions.Domain.Entities;
 
 namespace IdentecSolutions.Application.Queries.GetAllEquipment
 {
-    public class GetAllEquipmentByStatusHandler : IQueryHandler<GettAllEquipmentByStatusRequest, GetAllEquipmentByStatusResponse>
+    public class GetAllEquipmentByStatusHandler : IQueryHandler<GetAllEquipmentByStatusRequest, GetAllEquipmentByStatusResponse>
     {
         private readonly IEquipmentServiceRepository _equipmentServiceRepository;
-        public GetAllEquipmentByStatusHandler(IEquipmentServiceRepository equipmentServiceRepository)
+        private readonly IMapper _mapper;
+        public GetAllEquipmentByStatusHandler(IEquipmentServiceRepository equipmentServiceRepository, IMapper mapper)
         {
             _equipmentServiceRepository = equipmentServiceRepository;
+            _mapper = mapper;
         }
-        public async Task<GetAllEquipmentByStatusResponse> Handle(GettAllEquipmentByStatusRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllEquipmentByStatusResponse> Handle(GetAllEquipmentByStatusRequest request, CancellationToken cancellationToken)
         {
-            var te = await _equipmentServiceRepository.GetAllEquipmentByStatus(request.Status, cancellationToken);
-            return null;
+            var responseEquipmentByStatus = await _equipmentServiceRepository.GetAllEquipmentByStatus(request.Status, cancellationToken);
+            var mappedResult = _mapper.Map<List<EquipmentDto>>(responseEquipmentByStatus);
+            return new GetAllEquipmentByStatusResponse(mappedResult, mappedResult.Count);
         }
     }
 }
