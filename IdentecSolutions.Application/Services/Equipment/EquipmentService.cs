@@ -1,5 +1,4 @@
-﻿using IdentecSolutions.Application.Models.Equipment;
-using IdentecSolutions.EF.Repository;
+﻿using IdentecSolutions.EF.Repository;
 
 namespace IdentecSolutions.Application.Services.Equipment
 {

@@ -21,7 +21,7 @@ namespace IdentecSolutions.EF.Seed
                     SerialNumber="123",
                     Price=100,
                     IsInUsage=true, 
-                    WarrantyExpiryDate=DateTime.Now, 
+                    WarrantyExpiryDate= new DateTime(2025, 01, 01), 
                     Location="Shop",  
                     Status = true
     },
@@ -31,7 +31,7 @@ namespace IdentecSolutions.EF.Seed
                     SerialNumber = "1234",
                     Price = 100,
                     IsInUsage = true,
-                    WarrantyExpiryDate = DateTime.Now,
+                    WarrantyExpiryDate = new DateTime(2025, 01, 02),
                     Location = "Store",
                     Status = true
                 },
@@ -41,7 +41,7 @@ namespace IdentecSolutions.EF.Seed
                     SerialNumber = "123",
                     Price = 100,
                     IsInUsage = true,
-                    WarrantyExpiryDate =  DateTime.Now,
+                    WarrantyExpiryDate = new DateTime(2025, 01, 03),
                     Location = "Factory",
                     Status = true
                 }
