@@ -1,4 +1,4 @@
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using IdentecSolutions.Application.Core.Queries;
 using IdentecSolutions.Application.Core.Queries.Dispatcher;
@@ -11,6 +11,7 @@ using IdentecSolutions.EF.Repository;
 using IdentecSolutions.EF.UnitOfWork;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -50,7 +51,11 @@ builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBeh
 //builder.Services.AddControllers().AddFluentValidation();
 
 
-
+builder.Services.AddSwaggerGen(options =>
+{
+    options.EnableAnnotations(); // ✅ Required for [SwaggerOperation] to work
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
+}); 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
