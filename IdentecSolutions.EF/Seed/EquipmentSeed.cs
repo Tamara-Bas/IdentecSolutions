@@ -20,7 +20,6 @@ namespace IdentecSolutions.EF.Seed
                     Description="Equipment one",
                     SerialNumber="123",
                     Price=100,
-                    IsInUsage=true, 
                     WarrantyExpiryDate= new DateTime(2025, 01, 01), 
                     Location="Shop",  
                     Status = true
@@ -30,7 +29,6 @@ namespace IdentecSolutions.EF.Seed
                     Description = "Equipment two",
                     SerialNumber = "1234",
                     Price = 100,
-                    IsInUsage = true,
                     WarrantyExpiryDate = new DateTime(2025, 01, 02),
                     Location = "Store",
                     Status = true
@@ -40,7 +38,6 @@ namespace IdentecSolutions.EF.Seed
                     Description = "Equipment three",
                     SerialNumber = "123",
                     Price = 100,
-                    IsInUsage = true,
                     WarrantyExpiryDate = new DateTime(2025, 01, 03),
                     Location = "Factory",
                     Status = true

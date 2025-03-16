@@ -11,7 +11,6 @@ namespace IdentecSolutions.Domain.Entities
         public string Description { get; set; }  
         public string SerialNumber { get; set; }  
         public decimal Price { get; set; }
-        public bool IsInUsage { get; set; }
 
         public DateTime? WarrantyExpiryDate { get; set; }
         public string Location { get; set; }

@@ -1,3 +1,5 @@
+using IdentecSolutions.Application.Commands.Equipment.CreateEquipment;
+using IdentecSolutions.Application.Core.Commands;
 using IdentecSolutions.Application.Core.Queries;
 using IdentecSolutions.Application.Queries.GetAllEquipment;
 using IdentecSolutions.Application.Queries.GetEquipmentById;
@@ -9,15 +11,15 @@ namespace IdentecSolutions.WebApi.Controllers;
 
 [ApiController]
 [Route("api/equipment")]
-//[ApiController]
-//TBD
 public class EquipmentController : ControllerBase
 {
     private readonly IQueryDispatcher _queryDispatcher;
+    private readonly ICommandDispatcher _commandDispatcher;
 
-    public EquipmentController(IQueryDispatcher queryDispatcher)
+    public EquipmentController(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
     {
         _queryDispatcher = queryDispatcher;
+        _commandDispatcher = commandDispatcher;
     }
 
     [HttpGet]
@@ -39,5 +41,16 @@ public class EquipmentController : ControllerBase
     {
         var response = await _queryDispatcher.QueryAsync(query, CancellationToken.None).ConfigureAwait(false);
         return Ok(response);
+    }
+
+    [HttpPost]
+    [Route("")]
+    //[Route("create-equipment")]
+    [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+    [SwaggerOperation(Summary = OpenApiEndpointDocumentation.CreateEquipmentSummary, Description = OpenApiEndpointDocumentation.CreateEquipmentDescription)]
+    public async Task<IActionResult> CreateEquipment([FromQuery] CreateEquipmentRequest command, CancellationToken cancellationToken)
+    {
+         await _commandDispatcher.SendAsync(command, CancellationToken.None).ConfigureAwait(false);
+        return Ok(true);
     }
 }

@@ -56,6 +56,7 @@ namespace IdentecSolutions.EF.UnitOfWork
             }
         }
 
+
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)

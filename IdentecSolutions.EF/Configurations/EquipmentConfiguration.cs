@@ -7,8 +7,37 @@ namespace IdentecSolutions.EF.Configurations
     {
         public void Configure(EntityTypeBuilder<Domain.Entities.Equipment> builder)
         {
-            builder.Property(x => x.Name).HasMaxLength(50).IsRequired();
-            builder.Property(x => x.Description).HasMaxLength(200);
+            builder.HasKey(e => e.Id); // Primary Key
+
+            builder.Property(x => x.Name)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            builder.Property(x => x.Description)
+                .IsRequired()
+                .HasMaxLength(200);
+
+            builder.Property(e => e.SerialNumber)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            builder.Property(e => e.Price)
+                .HasColumnType("decimal(18,2)"); // Precision for decimals
+
+            builder.Property(e => e.WarrantyExpiryDate)
+                 .HasColumnType("datetime2"); // Allows NULL
+
+            builder.Property(e => e.Location)
+              .IsRequired()
+              .HasMaxLength(50);
+
+            builder.Property(e => e.Status)
+                .IsRequired();
+
+            builder.Property(e => e.EquipmentType)
+                .HasConversion<int>() // ✅ Converts Enum to int in DB
+                .IsRequired();
+
         }
     }
 }

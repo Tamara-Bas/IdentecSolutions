@@ -1,29 +1,25 @@
 ﻿using AutoMapper;
-using IdentecSolutions.Application.Core.Common.Enum;
 using IdentecSolutions.Application.Models.Equipment;
-using IdentecSolutions.Domain.Entities;
 
-namespace IdentecSolutions.Application.Queries.GetEquipmentById
+namespace IdentecSolutions.Application.Commands.Equipment.CreateEquipment
 {
-    public class GetEquipmentByIdMapper : Profile
+    public class CreateEquipmentMapper : Profile
     {
-        //public GetEquipmentByIdMapper()
-        //{
-        //    CreateMap<EquipmentDto, Equipment>().ReverseMap();
-        //}
-
-        public GetEquipmentByIdMapper()
+        public CreateEquipmentMapper()
         {
-            CreateMap<Equipment, EquipmentDto>()
+            //CreateMap<Models.Equipment.EquipmentDto, Domain.Entities.Equipment>().ReverseMap();
+          
+            CreateMap<EquimpmentCreateModel,  Domain.Entities.Equipment> ()
                 .ForMember(d => d.Id, x => x.MapFrom(s => s.Id))
                 .ForMember(d => d.Name, x => x.MapFrom(s => s.Name))
                 .ForMember(d => d.Description, x => x.MapFrom(s => s.Description))
                 .ForMember(d => d.SerialNumber, x => x.MapFrom(s => s.SerialNumber))
+                .ForMember(d => d.Price, x => x.MapFrom(s => s.Price))
                 .ForMember(d => d.WarrantyExpiryDate, x => x.MapFrom(s => s.WarrantyExpiryDate))
                 .ForMember(d => d.Location, x => x.MapFrom(s => s.Location))
-                .ForMember(d => d.EquipmentType, x => x.MapFrom(s => s.EquipmentType.GetDescription()))
-                .ForMember(d => d.Price, x => x.MapFrom(s => s.Price))
+                .ForMember(d => d.EquipmentType, x => x.MapFrom(s => (Domain.Enums.EquipmentTypeEnum)s.EquipmentType))
                 .ForMember(d => d.Status, x => x.MapFrom(s => s.Status));
         }
+    
     }
 }

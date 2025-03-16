@@ -1,10 +1,17 @@
-﻿namespace IdentecSolutions.Domain.Enums
+﻿using System.ComponentModel;
+
+namespace IdentecSolutions.Domain.Enums
 {
     public enum EquipmentTypeEnum
     {
         //tbd with desc??
+        [Description("Internal")]
         Internal=1,
-        Outdoor=2,
-        Mountain=3
+
+        [Description("Outdoor")]
+        Outdoor =2,
+
+        [Description("Mountain")]
+        Mountain =3
     }
 }

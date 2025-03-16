@@ -6,5 +6,6 @@
         void CreateTransaction();
         void Commit();
         void Rollback();
+        void Save();
     }
 }

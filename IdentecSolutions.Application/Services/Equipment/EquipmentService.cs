@@ -1,13 +1,21 @@
-﻿using IdentecSolutions.EF.Repository;
+﻿using AutoMapper;
+using Azure.Core;
+using IdentecSolutions.Application.Models.Equipment;
+using IdentecSolutions.EF.Repository;
+using IdentecSolutions.EF.UnitOfWork;
 
 namespace IdentecSolutions.Application.Services.Equipment
 {
     public class EquipmentService : IEquipmentServiceRepository
     {
         private readonly IBaseRepository<Domain.Entities.Equipment> _equipmentRepository;
-        public EquipmentService(IBaseRepository<Domain.Entities.Equipment> equipmentRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+        public EquipmentService(IBaseRepository<Domain.Entities.Equipment> equipmentRepository, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _equipmentRepository = equipmentRepository;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
         public async Task<List<Domain.Entities.Equipment>> GetAllEquipmentByStatus(bool status, CancellationToken cancellation)
         {
@@ -33,9 +41,26 @@ namespace IdentecSolutions.Application.Services.Equipment
 
             catch (Exception ex)
             {
-
                 throw new Exception(ex.Message);
             }
+        }
+
+
+        public async Task<Domain.Entities.Equipment> CreateEquipment(EquimpmentCreateModel request)
+        {
+            var entity = new Domain.Entities.Equipment();
+            try
+            {   
+                entity = _mapper.Map<Domain.Entities.Equipment>(request);
+                await _equipmentRepository.AddAsync(entity);
+                //return entity;
+            }
+            catch (Exception ex)
+            {;
+                throw new Exception(ex.Message);
+                //implement exception
+            }
+            return entity;
         }
     }
 }

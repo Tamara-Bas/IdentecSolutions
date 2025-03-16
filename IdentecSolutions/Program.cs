@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using IdentecSolutions.Application.Core.Commands;
 using IdentecSolutions.Application.Core.Queries;
 using IdentecSolutions.Application.Core.Queries.Dispatcher;
 using IdentecSolutions.Application.Queries.GetAllEquipment;
@@ -34,6 +35,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetEq
 
 
 builder.Services.AddScoped<IQueryDispatcher, QueryDispatcher>();
+builder.Services.AddScoped<ICommandDispatcher, CommandDispatcher>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 //builder.Services.AddMediatR(typeof(Program));

@@ -18,5 +18,22 @@
 ### Response
     - Status code 200, successfully fetched equipment by id";
 
+        public const string CreateEquipmentSummary = "Create equipment";
+        public const string CreateEquipmentDescription = @"
+### Rules
+   - Route POST api/equipment
+   - Name is required (string). Max length is 50 characters.
+    - Description is required (string). Max length is 200 characters.
+    - Serial number is required (string)
+    - Price is required (decimal)
+    - Location is required. Max length is 50 characters.
+    -WarrantyExpiryDate format dd-mm-yyyy
+    - EquipmentType is required. Available input 1,2,3
+    - Status is required. Defaul value false
+    
+### Response
+    -response is boolean. True if is successfully created, false if it is not. If there is any exception, transaction will be rollback
+    - Status code 200";
+
     }
 }
