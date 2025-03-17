@@ -1,6 +1,7 @@
 using IdentecSolutions.Application.Commands.Equipment.CreateEquipment;
 using IdentecSolutions.Application.Commands.Equipment.DeleteEquipment;
 using IdentecSolutions.Application.Commands.Equipment.UpdateEquipment;
+using IdentecSolutions.Application.Contracts;
 using IdentecSolutions.Application.Core.Commands;
 using IdentecSolutions.Application.Core.Queries;
 using IdentecSolutions.Application.Queries.GetAllEquipment;
@@ -38,7 +39,9 @@ public class EquipmentController : ControllerBase
     [HttpGet]
     [Route("get-equipment-by-id")]
     [ProducesResponseType(typeof(GetEquipmentByIdResponse), StatusCodes.Status200OK)]
-    [SwaggerOperation(Summary = OpenApiEndpointDocumentation.GetEquipmentByIdSummary, Description = OpenApiEndpointDocumentation.GetEquipmentByIdDescription)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(Summary = OpenApiEndpointDocumentation.GetAllEquipmentByStatusSummary, Description = OpenApiEndpointDocumentation.GetAllEquipmentByStatusDescription)]
     public async Task<IActionResult> GetEquipmentById([FromQuery] GetEquipmentByIdRequest query, CancellationToken cancellationToken)
     {
         var response = await _queryDispatcher.QueryAsync(query, CancellationToken.None).ConfigureAwait(false);
