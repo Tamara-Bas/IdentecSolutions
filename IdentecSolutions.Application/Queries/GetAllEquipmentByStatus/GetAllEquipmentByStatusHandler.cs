@@ -17,7 +17,7 @@ namespace IdentecSolutions.Application.Queries.GetAllEquipment
         }
         public async Task<GetAllEquipmentByStatusResponse> Handle(GetAllEquipmentByStatusRequest request, CancellationToken cancellationToken)
         {
-            var responseEquipmentByStatus = await _equipmentServiceRepository.GetAllEquipmentByStatus(request.Status, cancellationToken);
+            var responseEquipmentByStatus = await _equipmentServiceRepository.GetAllEquipmentByStatus((bool)request.Status, cancellationToken);
             var mappedResult = _mapper.Map<List<EquipmentDto>>(responseEquipmentByStatus);
             return new GetAllEquipmentByStatusResponse(mappedResult, mappedResult.Count);
         }

@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace IdentecSolutions.Application.Commands.Equipment.DeleteEquipment
 {
-    class DeleteEquipmentByIdValidator
+    public class DeleteEquipmentByIdValidator:AbstractValidator<DeleteEquipmentByIdRequest>
     {
+        public DeleteEquipmentByIdValidator()
+        {
+            RuleFor(x => x.Id)
+                .NotEmpty()
+                .WithMessage("Id is required")
+                .GreaterThan(0)
+                .WithMessage("Id must be grater than zero");
+        }
     }
 }

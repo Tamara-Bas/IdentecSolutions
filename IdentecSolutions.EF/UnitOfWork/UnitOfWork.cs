@@ -1,7 +1,6 @@
 ﻿using IdentecSolutions.Domain.Entities;
 using IdentecSolutions.EF.Repository;
 using Microsoft.EntityFrameworkCore.Storage;
-
 namespace IdentecSolutions.EF.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork

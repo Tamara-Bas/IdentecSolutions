@@ -1,6 +1,7 @@
 ﻿using IdentecSolutions.Domain.Entities;
 using IdentecSolutions.EF.Seed;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -17,20 +18,34 @@ namespace IdentecSolutions.EF
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            Debugger.Launch();
+            //Debugger.Launch();
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             DataSeed(modelBuilder);
 
-           
-            //modelBuilder.Entity<Equipment>(e =>
-            //{
-            //    e.HasKey(e => e.Id);
-            //    e.OwnsOne(e => e.AuditRecord);
-            //});
-
             base.OnModelCreating(modelBuilder);
         }
+        public override int SaveChanges()
+        {
+            //var context = eventData.Context;
 
+            //if (context == null) return base.SaveChangesAsync( cancellationToken);
+            var entries = ChangeTracker.Entries();
+
+            foreach (var entry in ChangeTracker.Entries<IAudit>())
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Entity.CreatedAt = DateTime.UtcNow;
+                    entry.Entity.UpdatedAt = DateTime.UtcNow;
+                }
+                else if (entry.State == EntityState.Modified)
+                {
+                    entry.Entity.UpdatedAt = DateTime.UtcNow;
+                }
+            }
+
+            return  base.SaveChanges();
+        }
         private static void DataSeed(ModelBuilder modelBuilder)
         {
             var seedTypes = typeof(IDataSeed).Assembly.GetTypes()

@@ -4,7 +4,7 @@ namespace IdentecSolutions.Domain.Enums
 {
     public enum EquipmentTypeEnum
     {
-        //tbd with desc??
+
         [Description("Internal")]
         Internal=1,
 
@@ -12,6 +12,9 @@ namespace IdentecSolutions.Domain.Enums
         Outdoor =2,
 
         [Description("Mountain")]
-        Mountain =3
+        Mountain =3,
+
+        [Description("OutOfSync")]
+        OutOfSync = 0
     }
 }

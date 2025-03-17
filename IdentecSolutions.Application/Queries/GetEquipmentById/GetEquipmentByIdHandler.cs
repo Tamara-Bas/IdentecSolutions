@@ -17,6 +17,10 @@ namespace IdentecSolutions.Application.Queries.GetEquipmentById
         public async Task<GetEquipmentByIdResponse> Handle(GetEquipmentByIdRequest request, CancellationToken cancellationToken)
         {
             var responseEquipment = await _equipmentServiceRepository.GetEquipmentById(request.Id, cancellationToken);
+            if (responseEquipment == null)
+            {
+                throw new ApplicationException("Equipment not found");
+            }
             var mappedEquipment = _mapper.Map<EquipmentDto>(responseEquipment);
             return new GetEquipmentByIdResponse(mappedEquipment);
         }

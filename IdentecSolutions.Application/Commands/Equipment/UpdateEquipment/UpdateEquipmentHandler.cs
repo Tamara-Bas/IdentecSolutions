@@ -21,19 +21,24 @@ namespace IdentecSolutions.Application.Commands.Equipment.UpdateEquipment
 
         public async Task<UpdateEquipmentResponse> Handle(UpdateEquipmentRequest request, CancellationToken cancellationToken)
         {
-            var equipment = await _equipmentServiceRepository.GetEquipmentById(request.Id, cancellationToken) ?? 
+            var dbEquipment = await _equipmentServiceRepository.GetEquipmentById(request.Id, cancellationToken) ?? 
                 throw new Exception("Equipment not found");
-
-            //equipment.Status = request.Properties.Status;
-
-            _unitOfWork.CreateTransaction();
 
             // var entity = _mapper.Map<UpdateEquipmentModel>(equipment);
             var updateEquipmentModel = new UpdateEquipmentModel
             {
-                Status = request.Properties.Status
+                Id=dbEquipment.Id,
+                Status = request.Properties.Status,
+                Name = dbEquipment.Name,
+                Description = dbEquipment.Description,
+                SerialNumber = dbEquipment.SerialNumber,
+                Price = dbEquipment.Price,
+                WarrantyExpiryDate = dbEquipment.WarrantyExpiryDate,
+                Location = dbEquipment.Location,
+                EquipmentType = (short)dbEquipment.EquipmentType,
 
             };
+            _unitOfWork.CreateTransaction();
             var updatedEquipment = await _equipmentServiceRepository.UpdateEquipment(updateEquipmentModel, cancellationToken);
 
             if (updatedEquipment==null)

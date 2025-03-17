@@ -10,7 +10,7 @@ namespace IdentecSolutions.EF
     {
         public ApplicationDbContext CreateDbContext(string[] args)
         {
-            Debugger.Launch();
+           // Debugger.Launch();
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")

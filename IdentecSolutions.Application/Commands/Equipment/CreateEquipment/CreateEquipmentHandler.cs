@@ -24,7 +24,7 @@ namespace IdentecSolutions.Application.Commands.Equipment.CreateEquipment
                 Description = request.Description,
                 SerialNumber=request.SerialNumber,
                 Price=request.Price,
-                WarrantyExpiryDate=request.WarrantyExpiryDate,
+                WarrantyExpiryDate= request.WarrantyExpiryDate,
                 Location=request.Location,
                 EquipmentType=request.EquipmentType,
                 Status = request.Status,

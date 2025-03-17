@@ -68,7 +68,7 @@ namespace IdentecSolutions.Application.Services.Equipment
             try
             {
                 entity = _mapper.Map<Domain.Entities.Equipment>(request);
-                await _equipmentRepository.AddAsync(entity);
+                await _equipmentRepository.UpdateAsync(entity);
                 //return entity;
             }
             catch (Exception ex)

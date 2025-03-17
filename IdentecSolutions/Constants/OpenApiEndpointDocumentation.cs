@@ -50,7 +50,6 @@
 ### Rules
    - Route Delete api/equipment/{id}
    - Id is required
-   - Status is required. Defaul value false
     
 ### Response
     -response is boolean. True if is successfully deleted, false if it is not. If there is any exception, transaction will be rollback

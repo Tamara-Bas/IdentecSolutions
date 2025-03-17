@@ -45,7 +45,7 @@ namespace IdentecSolutions.Application.Commands.Equipment.CreateEquipment
               .NotEmpty()
               .WithMessage("EquipmentType is required")
               .Must(equipmentType => Enum.IsDefined(typeof(EquipmentTypeEnum),(int)equipmentType))
-              .When(x=>x.EquipmentType==0)
+              .When(x=>x.EquipmentType==0 || x.EquipmentType>3)
               .WithMessage("Invalid equipment value. Allowed values: Internal=1,Outdoor=2,Mountain=3.");
 
             RuleFor(x => x.Status)
@@ -59,14 +59,14 @@ namespace IdentecSolutions.Application.Commands.Equipment.CreateEquipment
             .LessThanOrEqualTo(DateTime.Now).WithMessage("WarrantyExpiryDate cannot be in the future.")
             .Must(BeInExpectedFormat)
             .WithMessage($"WarrantyExpiryDate must be in the format {ExpectedDateFormat}.")
-            .When(x=>x.WarrantyExpiryDate!=null);
+            .When(e => e.WarrantyExpiryDate.HasValue);
 
 
         }
-        private bool BeInExpectedFormat(DateTime date)
+        private bool BeInExpectedFormat(DateTime? date)
         {
-            var te = date.ToString(ExpectedDateFormat, CultureInfo.InvariantCulture);
-            return date.ToString(ExpectedDateFormat, CultureInfo.InvariantCulture) == date.ToString("dd-MM-yyyy");
+            var te = date?.ToString(ExpectedDateFormat, CultureInfo.InvariantCulture);
+            return date?.ToString(ExpectedDateFormat, CultureInfo.InvariantCulture) == date?.ToString("dd-MM-yyyy");
         }
     }
 }

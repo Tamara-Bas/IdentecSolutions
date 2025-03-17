@@ -23,7 +23,6 @@ namespace IdentecSolutions.Application.Commands.Equipment.DeleteEquipment
                 throw new Exception("Equipment not found");
                     //to do: implement exception not found
             }
-            //to do: implement audit
 
             _unitOfWork.CreateTransaction();
 

@@ -10,7 +10,7 @@ namespace IdentecSolutions.Application.Queries.GetAllEquipmentByStatus
         public GettAllEquipmentByStatusMapper()
         {
             CreateMap<Equipment, EquipmentDto>()
-               .ForMember(d => d.Id, x => x.MapFrom(s => s.Id))
+             .ForMember(d => d.Id, x => x.MapFrom(s => s.Id))
                 .ForMember(d => d.Name, x => x.MapFrom(s => s.Name))
                 .ForMember(d => d.Description, x => x.MapFrom(s => s.Description))
                 .ForMember(d => d.SerialNumber, x => x.MapFrom(s => s.SerialNumber))

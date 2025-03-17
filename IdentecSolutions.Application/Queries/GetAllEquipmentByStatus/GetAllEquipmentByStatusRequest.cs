@@ -6,6 +6,6 @@ namespace IdentecSolutions.Application.Queries.GetAllEquipment
     public sealed record GetAllEquipmentByStatusRequest : BaseQuery<GetAllEquipmentByStatusResponse>
     {
         [FromQuery(Name="status")]
-        public bool Status { get; set; }
+        public bool? Status { get; set; }
     }
 }
