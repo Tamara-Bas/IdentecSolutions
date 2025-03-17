@@ -35,5 +35,26 @@
     -response is boolean. True if is successfully created, false if it is not. If there is any exception, transaction will be rollback
     - Status code 200";
 
+        public const string UpdateEquipmentSummary = "Update equipment by id";
+        public const string UpdateEquipmentDescription = @"
+### Rules
+    - Route PUT api/equipment/{id}
+    - Id is required (int).
+    - Status is required
+    
+### Response
+    - Status code 200";
+
+        public const string DeleteEquipmentSummary = "Delete equipment";
+        public const string DeleteEquipmentDescription = @"
+### Rules
+   - Route Delete api/equipment/{id}
+   - Id is required
+   - Status is required. Defaul value false
+    
+### Response
+    -response is boolean. True if is successfully deleted, false if it is not. If there is any exception, transaction will be rollback
+    - Status code 200";
+
     }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace IdentecSolutions.Domain.Entities
 {
-    public class Equipment : Entity, IAuditable<AuditRecord>
+    public class Equipment : Entity
     {
         [Required]
         [MaxLength(100)]
@@ -16,6 +16,5 @@ namespace IdentecSolutions.Domain.Entities
         public string Location { get; set; }
         public bool Status { get; set; } //to do and think: should be enum???
         public EquipmentTypeEnum EquipmentType { get; set; }
-        public AuditRecord AuditRecord { get ; set; } = new AuditRecord();
     }
 }

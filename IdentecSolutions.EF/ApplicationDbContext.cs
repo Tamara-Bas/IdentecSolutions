@@ -22,11 +22,11 @@ namespace IdentecSolutions.EF
             DataSeed(modelBuilder);
 
            
-            modelBuilder.Entity<Equipment>(e =>
-            {
-                e.HasKey(e => e.Id);
-                e.OwnsOne(e => e.AuditRecord);
-            });
+            //modelBuilder.Entity<Equipment>(e =>
+            //{
+            //    e.HasKey(e => e.Id);
+            //    e.OwnsOne(e => e.AuditRecord);
+            //});
 
             base.OnModelCreating(modelBuilder);
         }

@@ -62,5 +62,40 @@ namespace IdentecSolutions.Application.Services.Equipment
             }
             return entity;
         }
+        public async Task<Domain.Entities.Equipment> UpdateEquipment(UpdateEquipmentModel request, CancellationToken cancellationToken)
+        {
+            var entity = new Domain.Entities.Equipment();
+            try
+            {
+                entity = _mapper.Map<Domain.Entities.Equipment>(request);
+                await _equipmentRepository.AddAsync(entity);
+                //return entity;
+            }
+            catch (Exception ex)
+            {
+                ;
+                throw new Exception(ex.Message);
+                //implement exception
+            }
+            return entity;
+        }
+
+        public async Task<bool> DeleteEquipment(int id, CancellationToken cancellationToken)
+        {
+            bool isSuccess = false;
+            try
+            {
+                await _equipmentRepository.DeleteAsync(id);
+                isSuccess = true;
+                //return entity;
+            }
+            catch (Exception ex)
+            {
+                
+                throw new Exception(ex.Message);
+                //implement exception
+            }
+            return isSuccess;
+        }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using FluentValidation;
 using IdentecSolutions.Domain.Enums;
-using Microsoft.VisualBasic;
 using System.Globalization;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace IdentecSolutions.Application.Commands.Equipment.CreateEquipment
 {
@@ -60,7 +58,8 @@ namespace IdentecSolutions.Application.Commands.Equipment.CreateEquipment
             .WithMessage("WarrantyExpiryDate is invalid.")
             .LessThanOrEqualTo(DateTime.Now).WithMessage("WarrantyExpiryDate cannot be in the future.")
             .Must(BeInExpectedFormat)
-            .WithMessage($"WarrantyExpiryDate must be in the format {ExpectedDateFormat}.");
+            .WithMessage($"WarrantyExpiryDate must be in the format {ExpectedDateFormat}.")
+            .When(x=>x.WarrantyExpiryDate!=null);
 
 
         }

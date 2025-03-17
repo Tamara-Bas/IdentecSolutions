@@ -1,25 +1,22 @@
-﻿using AutoMapper;
-using IdentecSolutions.Application.Core.Commands;
+﻿using IdentecSolutions.Application.Core.Commands;
 using IdentecSolutions.Application.Models.Equipment;
 using IdentecSolutions.Application.Services.Equipment;
 using IdentecSolutions.EF.UnitOfWork;
 
 namespace IdentecSolutions.Application.Commands.Equipment.CreateEquipment
 {
-    public class CreateEquipmentHandler : CommandHandler<CreateEquipmentRequest>
+    public class CreateEquipmentHandler : ICommandHandler<CreateEquipmentRequest>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IEquipmentServiceRepository _equipmentServiceRepository;
-        private readonly IMapper _mapper;
 
-        public CreateEquipmentHandler(IUnitOfWork unitOfWork, IEquipmentServiceRepository equipmentServiceRepository,IMapper mapper)
+        public CreateEquipmentHandler(IUnitOfWork unitOfWork, IEquipmentServiceRepository equipmentServiceRepository)
         {
             _unitOfWork = unitOfWork;
             _equipmentServiceRepository = equipmentServiceRepository;
-            _mapper = mapper;
         }
 
-        public override async Task Handle(CreateEquipmentRequest request, CancellationToken cancellationToken)
+        public async Task Handle(CreateEquipmentRequest request, CancellationToken cancellationToken)
         {
             var equipment = new EquimpmentCreateModel
             {

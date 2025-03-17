@@ -1,4 +1,6 @@
 using IdentecSolutions.Application.Commands.Equipment.CreateEquipment;
+using IdentecSolutions.Application.Commands.Equipment.DeleteEquipment;
+using IdentecSolutions.Application.Commands.Equipment.UpdateEquipment;
 using IdentecSolutions.Application.Core.Commands;
 using IdentecSolutions.Application.Core.Queries;
 using IdentecSolutions.Application.Queries.GetAllEquipment;
@@ -51,6 +53,26 @@ public class EquipmentController : ControllerBase
     public async Task<IActionResult> CreateEquipment([FromQuery] CreateEquipmentRequest command, CancellationToken cancellationToken)
     {
          await _commandDispatcher.SendAsync(command, CancellationToken.None).ConfigureAwait(false);
+        return Ok(true);
+    }
+
+    [HttpPut]
+    [Route("{id}")]
+    [ProducesResponseType(typeof(UpdateEquipmentResponse), StatusCodes.Status200OK)]
+    [SwaggerOperation(Summary = OpenApiEndpointDocumentation.UpdateEquipmentSummary, Description = OpenApiEndpointDocumentation.UpdateEquipmentDescription)]
+    public async Task<IActionResult> UpdateEquipment([FromRoute] UpdateEquipmentRequest command, CancellationToken cancellationToken)
+    {
+       var response= await _commandDispatcher.SendAsync<UpdateEquipmentResponse,UpdateEquipmentRequest>(command, CancellationToken.None).ConfigureAwait(false);
+        return Ok(response);
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+    [SwaggerOperation(Summary = OpenApiEndpointDocumentation.DeleteEquipmentSummary, Description = OpenApiEndpointDocumentation.DeleteEquipmentDescription)]
+    public async Task<IActionResult> DeleteEquipment([FromRoute]DeleteEquipmentByIdRequest command, CancellationToken cancellationToken)
+    {
+        bool isDeleted=await _commandDispatcher.SendAsync<bool, DeleteEquipmentByIdRequest>(command, CancellationToken.None).ConfigureAwait(false);
         return Ok(true);
     }
 }
