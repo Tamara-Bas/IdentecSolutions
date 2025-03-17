@@ -21,6 +21,13 @@ namespace IdentecSolutions.EF
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             DataSeed(modelBuilder);
 
+           
+            modelBuilder.Entity<Equipment>(e =>
+            {
+                e.HasKey(e => e.Id);
+                e.OwnsOne(e => e.AuditRecord);
+            });
+
             base.OnModelCreating(modelBuilder);
         }
 

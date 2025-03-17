@@ -38,6 +38,12 @@ namespace IdentecSolutions.EF.Configurations
                 .HasConversion<int>() // ✅ Converts Enum to int in DB
                 .IsRequired();
 
+
+            //// ✅ Audit Fields
+            //builder.Property(e => e.AuditRecord.CreatedAt).HasColumnType("datetime2").IsRequired();
+            //builder.Property(e => e.AuditRecord.CreatedBy).HasMaxLength(100).IsRequired();
+            //builder.Property(e => e.AuditRecord.LastModifiedAt).HasColumnType("datetime2").IsRequired(false);
+            //builder.Property(e => e.AuditRecord.LastModifiedBy).HasMaxLength(100).IsRequired(false);
         }
     }
 }
