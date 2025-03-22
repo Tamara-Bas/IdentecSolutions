@@ -12,5 +12,7 @@ namespace IdentecSolutions.Application.Services.Equipment
         Task<Domain.Entities.Equipment> UpdateEquipment(UpdateEquipmentModel equipment, CancellationToken cancellation);
 
         Task<bool> DeleteEquipment(int id, CancellationToken cancellation);
+
+        Task<Domain.Entities.Equipment> GetEquipmentBySerialNumber(string serialNumber, CancellationToken cancellation);
     }
 }

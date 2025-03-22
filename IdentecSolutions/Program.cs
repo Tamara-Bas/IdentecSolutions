@@ -1,9 +1,10 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using IdentecSolutions.Application.Commands.Equipment.CreateEquipment;
 using IdentecSolutions.Application.Core.Commands;
 using IdentecSolutions.Application.Core.Queries;
 using IdentecSolutions.Application.Core.Queries.Dispatcher;
-using IdentecSolutions.Application.Queries.GetAllEquipment;
+using IdentecSolutions.Application.Queries.GetAllEquipmentByStatus;
 using IdentecSolutions.Application.Queries.GetEquipmentById;
 using IdentecSolutions.Application.Services.Equipment;
 using IdentecSolutions.Application.Services.ExceptionResponseMapper;
@@ -50,6 +51,7 @@ builder.Services.AddScoped<IExceptionResponseMapper, ExceptionResponseMapperServ
 builder.Services.AddAutoMapper(typeof(GetEquipmentByIdValidator));
 
 //validator
+builder.Services.AddValidatorsFromAssemblyContaining<CreateEquipmentValidator>();
 //builder.Services.AddControllers().AddFluentValidation();
 //builder.Services.AddValidatorsFromAssemblyContaining<GetEquipmentByIdValidator>(); // Registers all validators
 
@@ -86,6 +88,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-//app.UseExceptionMiddelware();
+app.UseExceptionMiddelware();
 
 app.Run();

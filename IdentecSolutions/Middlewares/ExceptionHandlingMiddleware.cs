@@ -1,9 +1,5 @@
-﻿using FluentValidation;
-using IdentecSolutions.Application.Services.ExceptionResponseMapper;
-using Microsoft.AspNetCore.Http;
-using System.Net;
+﻿using IdentecSolutions.Application.Services.ExceptionResponseMapper;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 public sealed class ExceptionHandlingMiddleware
 {
@@ -24,7 +20,7 @@ public sealed class ExceptionHandlingMiddleware
         }
         catch (Exception ex)
         {
-            //await HandleExceptionAsync(context, ex);
+           // await HandleExceptionAsync(context, ex);
             logger!.LogError(ex, ex.Message);
             var exceptionResponse = exceptionResponseMapper!.ExceptionResponse(ex);
             context!.Response.ContentType = "applications/json";

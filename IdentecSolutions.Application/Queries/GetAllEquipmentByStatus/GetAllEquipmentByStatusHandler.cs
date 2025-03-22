@@ -4,7 +4,7 @@ using IdentecSolutions.Application.Models.Equipment;
 using IdentecSolutions.Application.Services.Equipment;
 using IdentecSolutions.Domain.Entities;
 
-namespace IdentecSolutions.Application.Queries.GetAllEquipment
+namespace IdentecSolutions.Application.Queries.GetAllEquipmentByStatus
 {
     public class GetAllEquipmentByStatusHandler : IQueryHandler<GetAllEquipmentByStatusRequest, GetAllEquipmentByStatusResponse>
     {

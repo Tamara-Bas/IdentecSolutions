@@ -16,6 +16,7 @@ namespace IdentecSolutions.Application.Services.ExceptionResponseMapper
                 ValidationException ex => new ErrorResponse("validation_error", ex.ErrorsDictionary),
                 InvalidDataException ida => new ErrorResponse("validation_error", ida.Message),
                 NotFoundException nfe => new ErrorResponse("resource_not_founr_error", nfe.Message),
+                ConflictException cex => new ErrorResponse("resource_exist_error", cex.Message),
                 _ => new ErrorResponse("error", exception.Message)
             };
           
@@ -29,6 +30,7 @@ namespace IdentecSolutions.Application.Services.ExceptionResponseMapper
                 ValidationException => HttpStatusCode.BadRequest,
                 InvalidDataException => HttpStatusCode.BadRequest,
                 NotFoundException => HttpStatusCode.NotFound,
+                ConflictException => HttpStatusCode.Conflict,
                 _ => HttpStatusCode.InternalServerError
             };
             return new ExceptionResponse(errorResponse, statusCode);

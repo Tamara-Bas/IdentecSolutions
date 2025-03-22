@@ -1,6 +1,7 @@
 ﻿using IdentecSolutions.Application.Core.Commands;
 using IdentecSolutions.Application.Models.Equipment;
 using IdentecSolutions.Application.Services.Equipment;
+using IdentecSolutions.Domain.Exceptions;
 using IdentecSolutions.EF.UnitOfWork;
 
 namespace IdentecSolutions.Application.Commands.Equipment.CreateEquipment
@@ -18,6 +19,13 @@ namespace IdentecSolutions.Application.Commands.Equipment.CreateEquipment
 
         public async Task Handle(CreateEquipmentRequest request, CancellationToken cancellationToken)
         {
+            var existingEquipment = await _equipmentServiceRepository.GetEquipmentBySerialNumber(request.SerialNumber, cancellationToken);
+
+            if (existingEquipment != null)
+            {
+                throw new ConflictException("Equipment with the same serial number already exists.");
+            }
+
             var equipment = new EquimpmentCreateModel
             {
                 Name = request.Name,

@@ -4,7 +4,7 @@ using IdentecSolutions.Application.Commands.Equipment.UpdateEquipment;
 using IdentecSolutions.Application.Contracts;
 using IdentecSolutions.Application.Core.Commands;
 using IdentecSolutions.Application.Core.Queries;
-using IdentecSolutions.Application.Queries.GetAllEquipment;
+using IdentecSolutions.Application.Queries.GetAllEquipmentByStatus;
 using IdentecSolutions.Application.Queries.GetEquipmentById;
 using IdentecSolutions.WebApi.Constants;
 using Microsoft.AspNetCore.Mvc;
@@ -52,8 +52,10 @@ public class EquipmentController : ControllerBase
     [Route("")]
     //[Route("create-equipment")]
     [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(bool), StatusCodes.Status409Conflict)] //duplicate error
+    [ProducesResponseType(typeof(bool), StatusCodes.Status400BadRequest)] //validation error
     [SwaggerOperation(Summary = OpenApiEndpointDocumentation.CreateEquipmentSummary, Description = OpenApiEndpointDocumentation.CreateEquipmentDescription)]
-    public async Task<IActionResult> CreateEquipment([FromQuery] CreateEquipmentRequest command, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateEquipment([FromBody] CreateEquipmentRequest command, CancellationToken cancellationToken)
     {
          await _commandDispatcher.SendAsync(command, CancellationToken.None).ConfigureAwait(false);
         return Ok(true);

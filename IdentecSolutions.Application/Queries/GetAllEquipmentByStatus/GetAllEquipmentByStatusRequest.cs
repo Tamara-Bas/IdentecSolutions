@@ -1,7 +1,7 @@
 ﻿using IdentecSolutions.Application.Core.Queries;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IdentecSolutions.Application.Queries.GetAllEquipment
+namespace IdentecSolutions.Application.Queries.GetAllEquipmentByStatus
 {
     public sealed record GetAllEquipmentByStatusRequest : BaseQuery<GetAllEquipmentByStatusResponse>
     {

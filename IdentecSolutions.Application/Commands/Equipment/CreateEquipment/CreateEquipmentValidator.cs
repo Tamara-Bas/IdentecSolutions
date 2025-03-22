@@ -10,9 +10,13 @@ namespace IdentecSolutions.Application.Commands.Equipment.CreateEquipment
         public CreateEquipmentValidator()
         {
             RuleFor(x => x.Name)
-                .NotNull()
+                //.NotNull()
                 .NotEmpty()
                 .WithMessage("Name is required")
+                            .Must(name => !string.IsNullOrWhiteSpace(name)).WithMessage("Name cannot be only spaces.")
+
+                .Must(name => name?.Trim().Length > 0)
+                .WithMessage("Name cannot be only spaces.")
                 .MaximumLength(50)
                 .WithMessage("Maximum length is 50");
 

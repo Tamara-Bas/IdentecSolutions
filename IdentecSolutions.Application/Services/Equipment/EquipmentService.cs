@@ -97,5 +97,18 @@ namespace IdentecSolutions.Application.Services.Equipment
             }
             return isSuccess;
         }
+
+        public async Task<Domain.Entities.Equipment> GetEquipmentBySerialNumber(string serialNumber, CancellationToken cancellation)
+        {
+            try
+            {
+                return await _equipmentRepository.FirstOrDefaultAsync(x => x.SerialNumber == serialNumber);
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

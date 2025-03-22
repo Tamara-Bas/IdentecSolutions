@@ -1,7 +1,7 @@
 ﻿using IdentecSolutions.Application.Contracts;
 using IdentecSolutions.Application.Models.Equipment;
 
-namespace IdentecSolutions.Application.Queries.GetAllEquipment
+namespace IdentecSolutions.Application.Queries.GetAllEquipmentByStatus
 {
     public class GetAllEquipmentByStatusResponse : PaginatedResponse<List<EquipmentDto>>
     {

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentecSolutions.Applicatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentecSolutions.EF", "IdentecSolutions.EF\IdentecSolutions.EF.csproj", "{97C83473-BFF0-4CBA-BE19-1E247BC89297}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentecSolutions.Test", "IdentecSolutions.Test\IdentecSolutions.Test.csproj", "{0C5D79B2-029C-48F4-9231-1FD6403F66A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{97C83473-BFF0-4CBA-BE19-1E247BC89297}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97C83473-BFF0-4CBA-BE19-1E247BC89297}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97C83473-BFF0-4CBA-BE19-1E247BC89297}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C5D79B2-029C-48F4-9231-1FD6403F66A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C5D79B2-029C-48F4-9231-1FD6403F66A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C5D79B2-029C-48F4-9231-1FD6403F66A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C5D79B2-029C-48F4-9231-1FD6403F66A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

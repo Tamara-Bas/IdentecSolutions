@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using IdentecSolutions.Application.Queries.GetAllEquipment;
 
 namespace IdentecSolutions.Application.Queries.GetAllEquipmentByStatus
 {
