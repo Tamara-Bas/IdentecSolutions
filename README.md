@@ -1,4 +1,4 @@
-Setup and Instalation
+reSetup and Instalation
 -.Net sdk installed
 -Sql server ans SSMS
 
@@ -31,6 +31,6 @@ Tecnologies used
 Notes:
 On master branch- there is init of architecture of the projcet
 On main branch - there are all implementations
-On exceptionMidellware branch- this branch is not merged into main because I didnt manage to make it fully functional.
+On features/exceptionMidellware branch- this branch is not merged into main because I didnt manage to make it fully functional.
 
 
