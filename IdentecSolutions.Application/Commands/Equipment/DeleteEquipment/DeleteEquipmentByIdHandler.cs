@@ -1,5 +1,6 @@
 ﻿using IdentecSolutions.Application.Core.Commands;
 using IdentecSolutions.Application.Services.Equipment;
+using IdentecSolutions.Domain.Exceptions;
 using IdentecSolutions.EF.UnitOfWork;
 
 namespace IdentecSolutions.Application.Commands.Equipment.DeleteEquipment
@@ -20,8 +21,7 @@ namespace IdentecSolutions.Application.Commands.Equipment.DeleteEquipment
 
             if (equipment == null)
             {
-                throw new Exception("Equipment not found");
-                    //to do: implement exception not found
+                throw new NotFoundException("Equipment not found");
             }
 
             _unitOfWork.CreateTransaction();
@@ -30,6 +30,7 @@ namespace IdentecSolutions.Application.Commands.Equipment.DeleteEquipment
 
             if (!isdDeletedEquipment)
             {
+                _unitOfWork.Rollback();
                 throw new Exception("Failed to delete equipment");
             }
 

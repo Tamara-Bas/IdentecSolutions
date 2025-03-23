@@ -64,6 +64,8 @@ public class EquipmentController : ControllerBase
     [HttpPut]
     [Route("{id}")]
     [ProducesResponseType(typeof(UpdateEquipmentResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(bool), StatusCodes.Status400BadRequest)] //validation error
+    [ProducesResponseType(typeof(bool), StatusCodes.Status404NotFound)] //not found error
     [SwaggerOperation(Summary = OpenApiEndpointDocumentation.UpdateEquipmentSummary, Description = OpenApiEndpointDocumentation.UpdateEquipmentDescription)]
     public async Task<IActionResult> UpdateEquipment([FromRoute] UpdateEquipmentRequest command, CancellationToken cancellationToken)
     {
@@ -74,6 +76,8 @@ public class EquipmentController : ControllerBase
     [HttpDelete]
     [Route("{id}")]
     [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(bool), StatusCodes.Status404NotFound)] //not found error
+    [ProducesResponseType(typeof(bool), StatusCodes.Status400BadRequest)] //validation error
     [SwaggerOperation(Summary = OpenApiEndpointDocumentation.DeleteEquipmentSummary, Description = OpenApiEndpointDocumentation.DeleteEquipmentDescription)]
     public async Task<IActionResult> DeleteEquipment([FromRoute]DeleteEquipmentByIdRequest command, CancellationToken cancellationToken)
     {

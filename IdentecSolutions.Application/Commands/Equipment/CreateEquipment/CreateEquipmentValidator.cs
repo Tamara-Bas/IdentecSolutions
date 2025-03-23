@@ -10,11 +10,9 @@ namespace IdentecSolutions.Application.Commands.Equipment.CreateEquipment
         public CreateEquipmentValidator()
         {
             RuleFor(x => x.Name)
-                //.NotNull()
+                .NotNull()
                 .NotEmpty()
                 .WithMessage("Name is required")
-                            .Must(name => !string.IsNullOrWhiteSpace(name)).WithMessage("Name cannot be only spaces.")
-
                 .Must(name => name?.Trim().Length > 0)
                 .WithMessage("Name cannot be only spaces.")
                 .MaximumLength(50)
@@ -60,7 +58,7 @@ namespace IdentecSolutions.Application.Commands.Equipment.CreateEquipment
             RuleFor(x => x.WarrantyExpiryDate)
             .Must(date => date != default(DateTime))
             .WithMessage("WarrantyExpiryDate is invalid.")
-            .LessThanOrEqualTo(DateTime.Now).WithMessage("WarrantyExpiryDate cannot be in the future.")
+            .LessThanOrEqualTo(DateTime.Now).WithMessage("WarrantyExpiryDate cannot be in the past.")
             .Must(BeInExpectedFormat)
             .WithMessage($"WarrantyExpiryDate must be in the format {ExpectedDateFormat}.")
             .When(e => e.WarrantyExpiryDate.HasValue);

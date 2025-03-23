@@ -2,7 +2,9 @@
 using IdentecSolutions.Application.Core.Commands;
 using IdentecSolutions.Application.Models.Equipment;
 using IdentecSolutions.Application.Services.Equipment;
+using IdentecSolutions.Domain.Exceptions;
 using IdentecSolutions.EF.UnitOfWork;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace IdentecSolutions.Application.Commands.Equipment.UpdateEquipment
 {
@@ -22,7 +24,7 @@ namespace IdentecSolutions.Application.Commands.Equipment.UpdateEquipment
         public async Task<UpdateEquipmentResponse> Handle(UpdateEquipmentRequest request, CancellationToken cancellationToken)
         {
             var dbEquipment = await _equipmentServiceRepository.GetEquipmentById(request.Id, cancellationToken) ?? 
-                throw new Exception("Equipment not found");
+                throw new NotFoundException("Equipment not found");
 
             // var entity = _mapper.Map<UpdateEquipmentModel>(equipment);
             var updateEquipmentModel = new UpdateEquipmentModel
