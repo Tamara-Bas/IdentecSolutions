@@ -2,6 +2,7 @@
 using IdentecSolutions.Application.Core.Queries;
 using IdentecSolutions.Application.Models.Equipment;
 using IdentecSolutions.Application.Services.Equipment;
+using IdentecSolutions.Domain.Exceptions;
 
 namespace IdentecSolutions.Application.Queries.GetEquipmentById
 {
@@ -19,7 +20,7 @@ namespace IdentecSolutions.Application.Queries.GetEquipmentById
             var responseEquipment = await _equipmentServiceRepository.GetEquipmentById(request.Id, cancellationToken);
             if (responseEquipment == null)
             {
-                throw new ApplicationException("Equipment not found");
+                throw new NotFoundException("Equipment not found");
             }
             var mappedEquipment = _mapper.Map<EquipmentDto>(responseEquipment);
             return new GetEquipmentByIdResponse(mappedEquipment);

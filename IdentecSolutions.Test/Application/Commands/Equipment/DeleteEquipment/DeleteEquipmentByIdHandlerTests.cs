@@ -1,8 +1,5 @@
-﻿using IdentecSolutions.Application.Commands.Equipment.CreateEquipment;
-using IdentecSolutions.Application.Commands.Equipment.DeleteEquipment;
-using IdentecSolutions.Application.Models.Equipment;
+﻿using IdentecSolutions.Application.Commands.Equipment.DeleteEquipment;
 using IdentecSolutions.Application.Services.Equipment;
-using IdentecSolutions.Domain.Entities;
 using IdentecSolutions.Domain.Enums;
 using IdentecSolutions.Domain.Exceptions;
 using IdentecSolutions.EF.UnitOfWork;
