@@ -1,27 +1,25 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using IdentecSolutions.Application.Models.Equipment;
 using IdentecSolutions.EF.Repository;
 using IdentecSolutions.EF.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 
 namespace IdentecSolutions.Application.Services.Equipment
 {
     public class EquipmentService : IEquipmentServiceRepository
     {
         private readonly IBaseRepository<Domain.Entities.Equipment> _equipmentRepository;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         public EquipmentService(IBaseRepository<Domain.Entities.Equipment> equipmentRepository, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _equipmentRepository = equipmentRepository;
-            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
         public async Task<List<Domain.Entities.Equipment>> GetAllEquipmentByStatus(bool status, CancellationToken cancellation)
         {
             try
             {
-                var equipmentList = _equipmentRepository.Where(x => x.Status == status).ToList();
+                var equipmentList =await _equipmentRepository.Where(x => x.Status == status).ToListAsync(cancellation);
                 return equipmentList;
             }
             

@@ -41,7 +41,7 @@ public class EquipmentController : ControllerBase
     [ProducesResponseType(typeof(GetEquipmentByIdResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
-    [SwaggerOperation(Summary = OpenApiEndpointDocumentation.GetAllEquipmentByStatusSummary, Description = OpenApiEndpointDocumentation.GetAllEquipmentByStatusDescription)]
+    [SwaggerOperation(Summary = OpenApiEndpointDocumentation.GetEquipmentByIdSummary, Description = OpenApiEndpointDocumentation.GetEquipmentByIdDescription)]
     public async Task<IActionResult> GetEquipmentById([FromQuery] GetEquipmentByIdRequest query, CancellationToken cancellationToken)
     {
         var response = await _queryDispatcher.QueryAsync(query, CancellationToken.None).ConfigureAwait(false);
